@@ -1,3 +1,4 @@
+```python
 import numpy
 import scipy.special
 import csv
@@ -107,7 +108,7 @@ n=["ImageId","Label"]
 t=open('sample_submission.csv','w')
 writer=csv.writer(t)
 writer.writerow(n)
-i=1 
+i=1
 for j in jilu:
     p.append(i)
     i=i+1
@@ -127,3 +128,5 @@ t.close()
 
 
 
+
+```
