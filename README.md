@@ -1,3 +1,8 @@
+首先建立神经网络类的框架，然后填充初始化函数。因为训练函数和查询函数有一部分相似，所以先填充查询函数的代码。  
+由于要将训练好的模型参加kaggle上的比赛，所以最后要将结果保存再csv文件中，所以要先import csv，  
+使用t=open('answer.csv','w',newline='')语句打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。  
+使用newline=''，是为了消除最后得到csv文件会多空一行的问题。因为一开始并未有answer.csv的文件，所以会创建一个新的csv文件，最后用close()函数结束对csv文件的操作  
+在这次作业的过程中我也发现了一些坑点，因为一开始没有看群文件中的sample_submission.csv文件，导致没注意到要有“ImageId”和“Label”两个标签，导致在对answer.csv文件进行修改，只有通过query函数查询到的结果，导致第一次在kaggle上提交csv文件时，发现网页报错。
 ```python
 import numpy
 import scipy.special
@@ -65,9 +70,9 @@ class neuralNetwork:
         return final_outputs
 #设置每层的节点数及学习率
 input_nodes=784
-hidden_nodes=102
-output_nodes=10
-learning_rate=0.05
+hidden_nodes=101
+output_nodes=11
+learning_rate=0.095
 
 n=neuralNetwork(input_nodes,hidden_nodes,output_nodes,learning_rate)
 
@@ -105,7 +110,7 @@ for record in test_data_list:
     label = numpy.argmax(outputs)
     jilu.append(label)
 n=["ImageId","Label"]
-t=open('sample_submission.csv','w')
+t=open('answer.csv','w',newline='')
 writer=csv.writer(t)
 writer.writerow(n)
 i=1
@@ -116,6 +121,19 @@ for j in jilu:
     writer.writerow(p)
     p.clear()
 t.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
